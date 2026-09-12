@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_600">#2563EB</color>
+    <color name="gray_100">#F5F8FA</color>
+    <color name="gray_200">#E3E9EF</color>
+    <color name="gray_500">#8391A1</color>
+    <color name="gray_700">#536273</color>
+    <color name="green_100">#DDF7E8</color>
+    <color name="green_600">#12A95B</color>
+    <color name="green_700">#0B9A4F</color>
+    <color name="green_800">#08783F</color>
+    <color name="green_900">#063C24</color>
+    <color name="navy_900">#10233A</color>
+    <color name="red_600">#E53935</color>
+    <color name="white">#FFFFFF</color>
+    <string name="accessibility_description">FFS Urea booking automation service</string>
+    <string name="app_name">FFS Agent</string>
+    <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:colorAccent">#0B9A4F</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">#009A49</item>
+        <item name="android:navigationBarColor">#006034</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+    <style name="SplashTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:statusBarColor">#063C24</item>
+        <item name="android:navigationBarColor">#063C24</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@drawable/splash_bg</item>
+    </style>
+</resources>

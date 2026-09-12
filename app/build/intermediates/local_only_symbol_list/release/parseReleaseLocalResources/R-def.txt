@@ -1,0 +1,31 @@
+R_DEF: Internal format may change without notice
+local
+color blue_600
+color gray_100
+color gray_200
+color gray_500
+color gray_700
+color green_100
+color green_600
+color green_700
+color green_800
+color green_900
+color navy_900
+color red_600
+color white
+drawable card_bg
+drawable circle_green
+drawable circle_light
+drawable ffs_logo
+drawable info_bg
+drawable input_bg
+drawable primary_button
+drawable secondary_button
+drawable splash_bg
+drawable status_ready
+drawable stop_button
+string accessibility_description
+string app_name
+style AppTheme
+style SplashTheme
+xml accessibility_service_config

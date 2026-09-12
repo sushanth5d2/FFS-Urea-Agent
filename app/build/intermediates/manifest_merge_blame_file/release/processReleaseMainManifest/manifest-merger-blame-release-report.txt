@@ -1,0 +1,102 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.ffsagent"
+4    android:versionCode="1"
+5    android:versionName="0.1.0" >
+6
+7    <uses-sdk
+7-->INJECTED
+8        android:minSdkVersion="26"
+8-->INJECTED
+9        android:targetSdkVersion="36" />
+9-->INJECTED
+10
+11    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+11-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:3:5-77
+11-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:3:22-74
+12    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+12-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:4:5-77
+12-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:4:22-74
+13
+14    <!-- Android 11+ package visibility: allow the agent to detect/launch FFS. -->
+15    <queries>
+15-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:7:5-13:15
+16
+17        <!-- Needed to show installed launchable apps in the in-app selector. -->
+18        <intent>
+18-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:9:9-12:18
+19            <action android:name="android.intent.action.MAIN" />
+19-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:10:13-65
+19-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:10:21-62
+20
+21            <category android:name="android.intent.category.LAUNCHER" />
+21-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:11:13-73
+21-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:11:23-70
+22        </intent>
+23    </queries>
+24
+25    <application
+25-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:15:5-42:19
+26        android:allowBackup="false"
+26-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:16:9-36
+27        android:extractNativeLibs="false"
+27-->INJECTED
+28        android:icon="@drawable/ffs_logo"
+28-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:18:9-42
+29        android:label="@string/app_name"
+29-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:17:9-41
+30        android:supportsRtl="true"
+30-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:19:9-35
+31        android:theme="@style/AppTheme" >
+31-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:20:9-40
+32        <activity
+32-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:22:9-75
+33            android:name="com.ffsagent.MainActivity"
+33-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:22:19-47
+34            android:exported="false" />
+34-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:22:48-72
+35        <activity
+35-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:24:9-29:20
+36            android:name="com.ffsagent.SplashActivity"
+36-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:24:19-49
+37            android:exported="true"
+37-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:24:50-73
+38            android:theme="@style/SplashTheme" >
+38-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:24:74-108
+39            <intent-filter>
+39-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:25:13-28:29
+40                <action android:name="android.intent.action.MAIN" />
+40-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:10:13-65
+40-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:10:21-62
+41
+42                <category android:name="android.intent.category.LAUNCHER" />
+42-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:11:13-73
+42-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:11:23-70
+43            </intent-filter>
+44        </activity>
+45
+46        <service
+46-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:31:9-41:19
+47            android:name="com.ffsagent.FfsAccessibilityService"
+47-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:32:13-52
+48            android:exported="false"
+48-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:33:13-37
+49            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+49-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:34:13-79
+50            <intent-filter>
+50-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:35:13-37:29
+51                <action android:name="android.accessibilityservice.AccessibilityService" />
+51-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:36:17-92
+51-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:36:25-89
+52            </intent-filter>
+53
+54            <meta-data
+54-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:38:13-40:72
+55                android:name="android.accessibilityservice"
+55-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:39:17-60
+56                android:resource="@xml/accessibility_service_config" />
+56-->C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\app\src\main\AndroidManifest.xml:40:17-69
+57        </service>
+58    </application>
+59
+60</manifest>

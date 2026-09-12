@@ -1,0 +1,4 @@
+#Wed Sep 09 20:21:10 IST 2026
+base.0=C\:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-GFR-FirstRun-Fix\\app\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
