@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FFS Agent</string>
+    <string name="accessibility_description">FFS Urea booking automation service</string>
+</resources>
