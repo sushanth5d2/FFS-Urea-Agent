@@ -29,19 +29,19 @@ The main screen lets the operator configure the target FFS application, retailer
 
 ### FFS Agent — Automation Experience
 
-![FFS Agent automation experience](docs/images/ffs-agent-automation-flow.png)
+![FFS Agent automation experience](docs/images/ffs-agent-ui-overview.png)
 
 The agent runs the workflow in the background while the live status/log area communicates the current operation and state.
 
 ### FFS Agent — Product/Workflow Showcase
 
-![FFS Agent workflow showcase](docs/images/ffs-agent-showcase.png)
+![FFS Agent workflow showcase](docs/images/ffs-agent-ui-overview.png)
 
 This visual summarizes the intended product-selection and fertilizer-booking experience.
 
 ### UI Design Reference
 
-![FFS Agent UI design reference](docs/images/ffs-agent-config-reference.png)
+![FFS Agent UI design reference](docs/images/ffs-agent-ui-overview.png)
 
 This reference image was used during the UI refinement process.
 
