@@ -1,8 +1,8 @@
-com.ffsagent.app-pngs-0 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\build\generated\res\pngs\release
-com.ffsagent.app-updated_navigation_xml-1 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\build\generated\updated_navigation_xml\release
-com.ffsagent.app-packageReleaseResources-2 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
-com.ffsagent.app-packageReleaseResources-3 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
-com.ffsagent.app-release-4 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\build\intermediates\merged_res\release\mergeReleaseResources
-com.ffsagent.app-main-5 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\src\main\res
-com.ffsagent.app-release-6 C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app\src\release\res
+com.ffsagent.app-pngs-0 D:\FFS-Urea-Agent\app\build\generated\res\pngs\release
+com.ffsagent.app-updated_navigation_xml-1 D:\FFS-Urea-Agent\app\build\generated\updated_navigation_xml\release
+com.ffsagent.app-packageReleaseResources-2 D:\FFS-Urea-Agent\app\build\intermediates\incremental\release\packageReleaseResources\merged.dir
+com.ffsagent.app-packageReleaseResources-3 D:\FFS-Urea-Agent\app\build\intermediates\incremental\release\packageReleaseResources\stripped.dir
+com.ffsagent.app-release-4 D:\FFS-Urea-Agent\app\build\intermediates\merged_res\release\mergeReleaseResources
+com.ffsagent.app-main-5 D:\FFS-Urea-Agent\app\src\main\res
+com.ffsagent.app-release-6 D:\FFS-Urea-Agent\app\src\release\res
 gradleHome-0 C:\Users\sushanth\.gradle

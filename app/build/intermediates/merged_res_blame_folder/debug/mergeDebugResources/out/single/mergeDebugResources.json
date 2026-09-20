@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_secondary_button.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/secondary_button.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_stop_button.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/stop_button.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_card_bg.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/card_bg.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_status_ready.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/status_ready.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_circle_light.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/circle_light.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_circle_green.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/circle_green.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_primary_button.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/primary_button.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/xml_accessibility_service_config.xml.flat",
+        "source": "com.ffsagent.app-main-5:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_input_bg.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/input_bg.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_info_bg.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/info_bg.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_splash_bg.xml.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/splash_bg.xml"
+    },
+    {
+        "merged": "com.ffsagent.app-debug-3:/drawable_ffs_logo.png.flat",
+        "source": "com.ffsagent.app-main-5:/drawable/ffs_logo.png"
+    }
+]

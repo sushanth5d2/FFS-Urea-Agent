@@ -1,0 +1,62 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ffsagent.app-mergeDebugResources-1:/values/values.xml",
+            "map": [
+                {
+                    "source": "D:\\FFS-Urea-Agent\\app\\src\\main\\res\\values\\colors.xml",
+                    "from": {
+                        "startLines": "0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startColumns": "468,358,320,282,244,167,128,89,50,11,206,431,396",
+                        "startOffsets": "468,358,320,282,244,167,128,89,50,11,206,431,396",
+                        "endColumns": "506,396,358,320,282,206,167,128,89,50,244,468,431",
+                        "endOffsets": "506,396,358,320,282,206,167,128,89,50,244,468,431"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,98,141,184,227,270,314,358,402,446,490,533,575",
+                        "endColumns": "42,42,42,42,42,43,43,43,43,43,42,41,39",
+                        "endOffsets": "93,136,179,222,265,309,353,397,441,485,528,570,610"
+                    }
+                },
+                {
+                    "source": "D:\\FFS-Urea-Agent\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "1,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "16,537",
+                        "endLines": "9,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "532,997"
+                    },
+                    "to": {
+                        "startLines": "17,26",
+                        "startColumns": "4,4",
+                        "startOffsets": "752,1273",
+                        "endLines": "25,33",
+                        "endColumns": "12,12",
+                        "endOffsets": "1268,1733"
+                    }
+                },
+                {
+                    "source": "D:\\FFS-Urea-Agent\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2,1",
+                        "startColumns": "4,4",
+                        "startOffsets": "63,16",
+                        "endColumns": "89,46",
+                        "endOffsets": "148,58"
+                    },
+                    "to": {
+                        "startLines": "15,16",
+                        "startColumns": "4,4",
+                        "startOffsets": "615,705",
+                        "endColumns": "89,46",
+                        "endOffsets": "700,747"
+                    }
+                }
+            ]
+        }
+    ]
+}
