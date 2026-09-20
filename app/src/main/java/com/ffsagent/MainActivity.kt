@@ -27,7 +27,7 @@ class MainActivity : Activity() {
     private lateinit var receiverMobileEdit: EditText
     private lateinit var status: TextView
     private lateinit var logView: TextView
-    private lateinit var startButton: Button
+    private lateinit var startStopButton: Button
 
     private val green = Color.rgb(0, 154, 73)
     private val darkGreen = Color.rgb(0, 96, 52)
@@ -41,7 +41,6 @@ class MainActivity : Activity() {
             val state = intent.getStringExtra(FfsAccessibilityService.EXTRA_STATUS).orEmpty()
             val log = intent.getStringExtra(FfsAccessibilityService.EXTRA_LOG).orEmpty()
             status.text = state
-            updateStartButton()
             logView.text = ("${logView.text}\n$log").trim().takeLast(10000)
         }
     }
@@ -53,8 +52,8 @@ class MainActivity : Activity() {
         window.navigationBarColor = darkGreen
         if (Build.VERSION.SDK_INT >= 23) window.decorView.systemUiVisibility = 0
         buildUi()
+        updateStartStopButton()
         status.text = prefs.getString("agent_status", "READY") ?: "READY"
-        updateStartButton()
         logView.text = prefs.getString("agent_log", "No agent activity yet.\n\nEnter your details, enable Accessibility once, then tap START AGENT. OTP remains manual.")
         val filter = IntentFilter(FfsAccessibilityService.ACTION_STATUS)
         if (Build.VERSION.SDK_INT >= 33) registerReceiver(agentReceiver, filter, Context.RECEIVER_NOT_EXPORTED) else {
@@ -62,14 +61,6 @@ class MainActivity : Activity() {
         }
         if (Build.VERSION.SDK_INT >= 33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS), 100)
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (::status.isInitialized) {
-            status.text = prefs.getString("agent_status", "READY") ?: "READY"
-            updateStartButton()
         }
     }
 
@@ -113,17 +104,6 @@ class MainActivity : Activity() {
         }, LinearLayout.LayoutParams(dp(42), dp(50)))
         content.addView(header)
 
-        // Ready banner
-        val ready = roundedCard(Color.rgb(213, 248, 228), dp(16), dp(14))
-        val rr = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL }
-        rr.addView(circleIcon("✓", green, 42), LinearLayout.LayoutParams(dp(42), dp(42)))
-        val rt = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(12),0,0,0) }
-        rt.addView(tv("Agent Ready", 17f, navy, true))
-        rt.addView(tv("Configure details below and start automation", 12.5f, Color.rgb(41,85,63), false))
-        rr.addView(rt, LinearLayout.LayoutParams(0,-2,1f))
-        ready.addView(rr)
-        content.addView(ready, margin(0,0,0,12))
-
         // FFS application card
         val appCard = roundedCard(Color.WHITE, dp(16), dp(16))
         val appRow = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL }
@@ -157,12 +137,11 @@ class MainActivity : Activity() {
         settings.addView(receiverMobileEdit, margin(0,4,0,0))
         content.addView(settings, margin(0,0,0,14))
 
-        // Start button
-        startButton = button("▶  START AGENT", true) { toggleAgent() }
-        startButton.setTextSize(17f)
-        content.addView(startButton, margin(0,0,0,12))
-        val startSub = tv("Login and complete Urea booking automatically", 12f, Color.WHITE, false)
-        startSub.visibility = View.GONE
+        // Dynamic Start/Stop button
+        startStopButton = button("▶  START AGENT", true) { toggleAgent() }
+        startStopButton.setTextSize(17f)
+        content.addView(startStopButton, margin(0,0,0,12))
+        updateStartStopButton()
 
         // Settings / accessibility
         // Configuration is persisted automatically; there is no separate Load step.
@@ -199,7 +178,6 @@ class MainActivity : Activity() {
         val liveHeader = LinearLayout(this).apply { gravity = Gravity.CENTER_VERTICAL; setPadding(dp(2),0,dp(2),dp(8)) }
         liveHeader.addView(tv("●", 18f, green, true), LinearLayout.LayoutParams(dp(25),-2))
         liveHeader.addView(tv("Agent Status", 18f, navy, true), LinearLayout.LayoutParams(0,-2,1f))
-        // The main START AGENT button is the single Start/Stop toggle.
         content.addView(liveHeader)
 
         val statusCard = roundedCard(Color.WHITE, dp(16), dp(14))
@@ -265,21 +243,33 @@ class MainActivity : Activity() {
     }
 
     private fun toggleAgent() {
-        if (prefs.getBoolean("agent_enabled", false)) stopAgent() else saveAndStart()
+        val running = prefs.getBoolean("agent_requested", false)
+        if (running) {
+            FfsAccessibilityService.requestStop()
+            prefs.edit().putBoolean("agent_requested", false).apply()
+        } else {
+            if (!saveConfig(false)) return
+            FfsAccessibilityService.requestStart()
+            prefs.edit().putBoolean("agent_requested", true).apply()
+            val pkg = packageEdit.text.toString().trim().ifEmpty { "com.agristack.fsas" }
+            val launchIntent = packageManager.getLaunchIntentForPackage(pkg)
+            if (launchIntent == null) {
+                Toast.makeText(this, "FFS app is not installed", Toast.LENGTH_LONG).show()
+                prefs.edit().putBoolean("agent_requested", false).apply()
+            } else {
+                launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
+                window.decorView.postDelayed({ try { startActivity(launchIntent) } catch (_: Exception) {} }, 250L)
+            }
+        }
+        updateStartStopButton()
     }
 
-    private fun stopAgent() {
-        FfsAccessibilityService.requestStop(this)
-        prefs.edit().putString("agent_status", "STOPPED").apply()
-        updateStartButton()
-        status.text = "STOPPED"
-    }
-
-    private fun updateStartButton() {
-        if (!::startButton.isInitialized) return
-        val running = prefs.getBoolean("agent_enabled", false)
-        startButton.text = if (running) "■  STOP AGENT" else "▶  START AGENT"
-        startButton.setBackgroundResource(if (running) R.drawable.stop_button else R.drawable.primary_button)
+    private fun updateStartStopButton() {
+        if (!::startStopButton.isInitialized) return
+        val running = prefs.getBoolean("agent_requested", false)
+        startStopButton.text = if (running) "■  STOP AGENT" else "▶  START AGENT"
+        startStopButton.setTextColor(Color.WHITE)
+        startStopButton.setBackgroundResource(if (running) R.drawable.stop_button else R.drawable.primary_button)
     }
 
     private fun saveAndStart() {
@@ -287,7 +277,9 @@ class MainActivity : Activity() {
 
         // Start the accessibility state machine first, then launch FFS automatically.
         // The user should never have to open FFS separately after pressing START AGENT.
-        FfsAccessibilityService.requestStart(this)
+        FfsAccessibilityService.requestStart()
+        prefs.edit().putBoolean("agent_requested", true).apply()
+        updateStartStopButton()
         val pkg = packageEdit.text.toString().trim().ifEmpty { "com.agristack.fsas" }
         val launchIntent = packageManager.getLaunchIntentForPackage(pkg)
         if (launchIntent == null) {
@@ -295,8 +287,6 @@ class MainActivity : Activity() {
             return
         }
         launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
-        prefs.edit().putBoolean("agent_enabled", true).apply()
-        updateStartButton()
         window.decorView.postDelayed({
             try { startActivity(launchIntent) }
             catch (_: Exception) {

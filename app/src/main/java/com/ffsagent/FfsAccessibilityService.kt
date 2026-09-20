@@ -13,6 +13,10 @@ import android.os.Handler
 import android.os.Looper
 import android.view.accessibility.AccessibilityEvent
 import android.view.accessibility.AccessibilityNodeInfo
+import android.view.Gravity
+import android.view.WindowManager
+import android.graphics.Color
+import android.widget.TextView
 import android.widget.Toast
 import java.util.Locale
 
@@ -24,19 +28,8 @@ class FfsAccessibilityService : AccessibilityService() {
         const val EXTRA_STATUS = "status"
         const val EXTRA_LOG = "log"
 
-        fun requestStart(context: Context? = null) {
-            context?.getSharedPreferences("config", Context.MODE_PRIVATE)
-                ?.edit()?.putBoolean("agent_enabled", true)?.apply()
-            requested = true
-            instance?.resetAutomation()
-            instance?.announce("AGENT RUNNING", "Waiting for FFS login/home screen")
-        }
-        fun requestStop(context: Context? = null) {
-            context?.getSharedPreferences("config", Context.MODE_PRIVATE)
-                ?.edit()?.putBoolean("agent_enabled", false)?.apply()
-            requested = false
-            instance?.stopAutomation("Stopped by user")
-        }
+        fun requestStart() { requested = true; instance?.prefs?.edit()?.putBoolean("agent_requested", true)?.apply(); instance?.resetAutomation(); instance?.announce("AGENT RUNNING", "Waiting for FFS login/home screen") }
+        fun requestStop() { requested = false; instance?.prefs?.edit()?.putBoolean("agent_requested", false)?.apply(); instance?.stopAutomation("Stopped by user") }
     }
 
     private val handler = Handler(Looper.getMainLooper())
@@ -81,6 +74,8 @@ class FfsAccessibilityService : AccessibilityService() {
     private var npksRemoved = false
     private var dapRemoved = false
     private var mopRemoved = false
+    private var overlay: TextView? = null
+    private var overlayManager: WindowManager? = null
     private var lastAnnounced = ""
     private var lastNotificationAt = 0L
     private val prefs by lazy { getSharedPreferences("config", Context.MODE_PRIVATE) }
@@ -94,18 +89,9 @@ class FfsAccessibilityService : AccessibilityService() {
     override fun onServiceConnected() {
         super.onServiceConnected()
         instance = this
+        requested = prefs.getBoolean("agent_requested", false)
         createChannel()
-        // Keep the automation preference across Activity/recent-task removal.
-        // Android still controls the AccessibilityService lifecycle, but when
-        // the service is rebound we restore the user's last Start/Stop choice.
-        requested = prefs.getBoolean("agent_enabled", false)
-        if (requested) {
-            // Resume the user's last Start choice after the service is rebound.
-            resetAutomation()
-        } else {
-            prefs.edit().putString("agent_status", "READY").apply()
-            broadcastStatus("READY")
-        }
+        // No floating Agent Ready overlay is created.
     }
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
@@ -120,6 +106,7 @@ class FfsAccessibilityService : AccessibilityService() {
     override fun onInterrupt() = Unit
 
     override fun onDestroy() {
+        removeOverlay()
         instance = null
         super.onDestroy()
     }
@@ -1579,6 +1566,7 @@ class FfsAccessibilityService : AccessibilityService() {
         val stamp = java.text.SimpleDateFormat("HH:mm:ss", Locale.ROOT).format(java.util.Date())
         prefs.edit().putString("agent_status", state).putString("agent_log", (old + "$stamp  $line").takeLast(50).joinToString("\n")).apply()
         broadcastStatus(line)
+        updateOverlay(state, message)
         val now = System.currentTimeMillis()
         if (now - lastNotificationAt >= 1200L || state == "ERROR" || state == "SUCCESS") {
             lastNotificationAt = now
@@ -1596,7 +1584,6 @@ class FfsAccessibilityService : AccessibilityService() {
 
     private fun stopAutomation(reason: String) {
         requested = false
-        prefs.edit().putBoolean("agent_enabled", false).apply()
         currentState = if (reason.contains("successful", true)) State.SUCCESS else State.ERROR
         handler.removeCallbacksAndMessages(null)
         announce(if (currentState == State.SUCCESS) "SUCCESS" else "STOPPED", reason)
@@ -1610,6 +1597,42 @@ class FfsAccessibilityService : AccessibilityService() {
         val ms = if (configuredPoll >= 1000L) 80L else configuredPoll.coerceIn(60L, 30000L)
         handler.removeCallbacksAndMessages(null)
         handler.postDelayed({ tick() }, ms)
+    }
+
+    private fun createOverlay() {
+        if (overlay != null) return
+        overlayManager = getSystemService(WINDOW_SERVICE) as WindowManager
+        overlay = TextView(this).apply {
+            setTextColor(Color.WHITE)
+            setBackgroundColor(Color.argb(215, 20, 20, 20))
+            textSize = 12f
+            setPadding(18, 12, 18, 12)
+            gravity = Gravity.CENTER_VERTICAL
+            text = "FFS Agent\nWaiting..."
+        }
+        val params = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+            android.graphics.PixelFormat.TRANSLUCENT
+        ).apply {
+            gravity = Gravity.TOP
+            y = 28
+        }
+        try { overlayManager?.addView(overlay, params) } catch (_: Exception) { overlay = null }
+    }
+
+    private fun updateOverlay(state: String, message: String) {
+        handler.post {
+            overlay?.text = "FFS Agent  •  $state\n$message"
+        }
+    }
+
+    private fun removeOverlay() {
+        try { overlay?.let { overlayManager?.removeView(it) } } catch (_: Exception) {}
+        overlay = null
+        overlayManager = null
     }
 
     private fun createChannel() {

@@ -4,24 +4,26 @@
             "outputFile": "com.ffsagent.app-release-3:/values_values.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-Service-Lifecycle-Fix\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
-                        "startLines": "2,1",
+                        "startLines": "1,10",
                         "startColumns": "4,4",
-                        "startOffsets": "63,16",
-                        "endColumns": "89,46",
-                        "endOffsets": "148,58"
+                        "startOffsets": "16,537",
+                        "endLines": "9,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "532,997"
                     },
                     "to": {
-                        "startLines": "15,16",
+                        "startLines": "17,26",
                         "startColumns": "4,4",
-                        "startOffsets": "615,705",
-                        "endColumns": "89,46",
-                        "endOffsets": "700,747"
+                        "startOffsets": "752,1273",
+                        "endLines": "25,33",
+                        "endColumns": "12,12",
+                        "endOffsets": "1268,1733"
                     }
                 },
                 {
-                    "source": "C:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-Service-Lifecycle-Fix\\app\\src\\main\\res\\values\\colors.xml",
+                    "source": "C:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
                         "startLines": "0,0,0,0,0,0,0,0,0,0,0,0,0",
                         "startColumns": "468,358,320,282,244,167,128,89,50,11,206,431,396",
@@ -38,22 +40,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-Service-Lifecycle-Fix\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Users\\sushanth\\Downloads\\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "1,10",
+                        "startLines": "2,1",
                         "startColumns": "4,4",
-                        "startOffsets": "16,537",
-                        "endLines": "9,17",
-                        "endColumns": "12,12",
-                        "endOffsets": "532,997"
+                        "startOffsets": "63,16",
+                        "endColumns": "89,46",
+                        "endOffsets": "148,58"
                     },
                     "to": {
-                        "startLines": "17,26",
+                        "startLines": "15,16",
                         "startColumns": "4,4",
-                        "startOffsets": "752,1273",
-                        "endLines": "25,33",
-                        "endColumns": "12,12",
-                        "endOffsets": "1268,1733"
+                        "startOffsets": "615,705",
+                        "endColumns": "89,46",
+                        "endOffsets": "700,747"
                     }
                 }
             ]

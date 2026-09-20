@@ -31,8 +31,8 @@
         <service
             android:name=".FfsAccessibilityService"
             android:exported="false"
-            android:stopWithTask="false"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
+            android:stopWithTask="false">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>

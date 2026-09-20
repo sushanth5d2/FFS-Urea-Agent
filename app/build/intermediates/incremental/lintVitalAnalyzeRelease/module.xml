@@ -1,6 +1,6 @@
 <lint-module
     format="1"
-    dir="C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Service-Lifecycle-Fix\app"
+    dir="C:\Users\sushanth\Downloads\FFS-Urea-Agent-Final-37-Full-Fix-Lifecycle-Dynamic-Colors-No-Overlay\app"
     name=":app"
     type="APP"
     maven="FFSUreaAgent:app:unspecified"
